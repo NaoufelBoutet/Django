@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>PrédiSchool</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+    font-family: "Lato", sans-serif;
+}
+.mySlides {
+    display: none;
+}
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: 0 -16px;
+}
+.scroll-item {
+    display: inline-block;
+    flex: 0 0 300px;
+    margin: 0 8px;
+    box-sizing: border-box;
+}
+.scroll-item .w3-container {
+    min-height: 250px; /* Hauteur minimale pour uniformiser les encadrés */
+}
+.scroll-buttons {
+    text-align: center;
+    margin-bottom: 16px;
+}
+.scroll-buttons .w3-button {
+    margin: 0 5px;
+}
+.form-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 32px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.form-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-container button:hover {
+    background-color: #45a049;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-padding-large">Accueil</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'deconnexion' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Déconnexion</a>
+    {% endif %}
+    {% if not user.is_authenticated %}
+        <a href="{% url 'inscription' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Inscription</a>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Formulaire de connexion -->
+  <div class="form-container w3-card w3-light-grey">
+    <h1>Connexion</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="motdepasse" required>
+
+        <button type="submit">Se connecter</button>
+        <h4>{{ message }}</h4>
+        <p>Vous n'avez pas encore de compte? <a href="{% url 'inscription' %}">Inscrivez-vous!</a></p>
+    </form>
+  </div>
+
+<!-- End Page Content -->
+</div>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

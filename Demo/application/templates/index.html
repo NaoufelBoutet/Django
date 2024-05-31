@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>PrédiSchool</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: 0 -16px;
+}
+.scroll-item {
+    display: inline-block;
+    flex: 0 0 300px;
+    margin: 0 8px;
+    box-sizing: border-box;
+   
+}
+.scroll-item .w3-container {
+    min-height: 250px; /* Hauteur minimale pour uniformiser les encadrés */
+}
+.scroll-buttons {
+    text-align: center;
+    margin-bottom: 16px;
+}
+.scroll-buttons .w3-button {
+    margin: 0 5px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-padding-large">Accueil</a>
+    <a href="{% url 'architechture' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Prédiction</a>
+    <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Nos Formations</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Contact</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'deconnexion' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Déconnexion</a>
+    {% endif %}
+    {% if not user.is_authenticated %}
+        <a href="{% url 'connexion' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Connexion</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">Plus <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="{% url 'profile' %}" class="w3-bar-item w3-button">Profile</a>
+        {% if user.is_authenticated and user.is_superuser %}
+            <a href="{% url 'Monitoring' %}" class="w3-bar-item w3-button">Statistiques</a>
+        {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:5%">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <img src="https://trustmyscience.com/wp-content/uploads/2022/12/quotient-emotionnel-qi-prediction-reussite-universite-couv.jpg" style="width:50%; height:433px;">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="https://lejournal.cnrs.fr/sites/default/files/styles/visuel_principal/public/assets/images/adobestock_566468681_vp2.jpg" style="width:50%; height:433px;">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">    
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="https://datascientest.com/wp-content/uploads/2024/01/Intelligence-Artificielle-Generative.jpg" style="width:50%; height:30%;">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+    </div>
+  </div>
+  <h1 style="text-align:center;font-weight: bold;">Bienvenue chez PrédiSchool !!</h1>
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" id="band">
+    <h2 class="w3-wide">Qui sommes-nous?</h2>
+    <p class="w3-justify">
+        Vous êtes sur le point de prendre une décision importante : choisir une formation qui façonnera votre avenir professionnel. Mais comment savoir si vous réussirez dans cette formation ? 
+        C'est là que nous intervenons.
+        PrédiSchool est une plateforme innovante de prédiction de réussite en formations. Notre objectif est de vous fournir des informations précieuses et des analyses approfondies pour vous aider à prendre la meilleure décision pour votre avenir.
+        Grâce à notre technologie de pointe et à notre algorithme intelligent, nous évaluons différents facteurs et caractéristiques pour prédire avec précision vos chances de réussite dans une formation donnée.
+        Ne laissez plus le doute vous empêcher de choisir la voie qui vous convient le mieux. Rejoignez-nous dès aujourd'hui et commencez à planifier votre avenir avec confiance !
+    </p></br></br>
+    <h2 class="w3-wide">Comment ça marche?</h2>
+    <div class="w3-row w3-padding-32" style="display: flex; justify-content: space-between;"> 
+        <div class="w3-third" style="flex: 1; padding: 10px;">
+            <h3>Collecte des données</h3>
+            <p>Notre système collecte les messages envoyés sur les forums de formation ainsi que les informations personnelles des utilisateurs, telles que leurs antécédents académiques et leurs expériences professionnelles.</p></br>
+            <img src="https://afriksurvey.com/wp-content/uploads/2021/10/Illustration-collecte-de-donnees.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:100%">
+        </div>
+        <div class="w3-third" style="flex: 1; padding: 10px;">
+            <h3>Analyse des données</h3>
+            <p>Ensuite, nous utilisons des techniques d'analyse de texte avancées pour extraire les informations pertinentes des messages des forums. Nous combinons ces données avec les informations personnelles des utilisateurs pour créer un profil complet.</p>
+            <img src="https://i0.wp.com/rewenknine.com/wp-content/uploads/2021/10/7-etapes-clefs-donnees-entreprise.png?fit=750%2C500&ssl=1" class="w3-round w3-margin-bottom" alt="Random Name" style="width:100%">
+        </div>
+        <div class="w3-third" style="flex: 1; padding: 10px;">
+            <h3>Modélisation prédictive</h3>
+            <p>À l'aide d'un algorithme sophistiqué, nous analysons ces profils pour identifier les facteurs qui influent le plus sur la réussite dans une formation donnée. Nous construisons ensuite un modèle prédictif basé sur ces facteurs.</p>
+            <img src="https://media.assettype.com/analyticsinsight%2Fimport%2Fwp-content%2Fuploads%2F2020%2F07%2FArtificial-IntelligenceAI.jpeg" class="w3-round" alt="Random Name" style="width:100%">
+        </div>
+    </div>
+  </div> 
+<!-- The Tour Section -->
+<div class="w3-black" id="tour">
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">Nos meilleurs promotions !!</h2>
+      <p class="w3-opacity w3-center"><i>N'hésitez pas à nous contacter pour plus d'informations!</i></p><br>
+
+      <div class="scroll-buttons">
+          <button class="w3-button w3-black" onclick="scrollRight(-200)">&#10094;</button>
+          <button class="w3-button w3-black" onclick="scrollRight(200)">&#10095;</button>
+      </div>
+
+      <div class="scroll-container w3-row-padding w3-padding-32" style="margin:0 -16px; display: flex; overflow-x: auto;">
+        {% for element in liste_affichage  %}
+            <div class="scroll-item w3-margin-bottom" style="flex: 0 0 300px; margin: 0 8px;">
+                <img src="https://www.w3schools.com/w3images/newyork.jpg" alt="New York" style="width:100%" class="w3-hover-opacity">
+                <div class="w3-container w3-white" style="min-height: 250px;">
+                    <p><u><b>Titre du cours:</b></u></p>
+                    {% for titre in element.id  %}
+                        <p>{{ titre }}</p>
+                    {% endfor %}
+                    <p><u><b>Notes moyenne (sur 5):</b></u></p>
+                    <p>{{ element.averageScore }}</p>
+                    <p><u><b>Nombre de </br>personnes admises:</b></u></p>
+                    <p>{{ element.validatedCount }}</p>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+  function scrollRight(distance) {
+      document.querySelector('.scroll-container').scrollBy({left: distance, behavior: 'smooth'});
+  }
+</script>
+
+
+<!-- Image of location/map -->
+<img src="https://www.agvs-upsa.ch/system/files/agvs/News/2019/20191231_Werkstatt/handshake.jpg" class="w3-image w3-greyscale-min" style="width:100%">
+  <!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+    <p class="w3-opacity w3-center"><i>Fan? Laissez nous une note !!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Tours, 37000<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +33 06151515<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: naoufelboutet2@gmail.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form id="contact-form" action="https://formspree.io/f/xdoqrnrv" method="POST">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Nom">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">Envoyer</button>
+        </form>
+        <div id="confirmation-message" style="display: none;">Votre message a été envoyé avec succès.</div>
+      </div>
+    </div>
+  </div>
+ 
+ 
+<!-- End Page Content -->
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://gretaformation.ac-orleans-tours.fr/greta-val-de-loire" target="_blank">DATA_P3_IA</a></p>
+</footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      // Affiche le message de confirmation
+      document.getElementById("confirmation-message").style.display = "block";
+
+      // Réinitialise le formulaire après 3 secondes
+      setTimeout(function() {
+        document.getElementById("confirmation-message").style.display = "none";
+        document.getElementById("contact-form").reset();
+      }, 3000);
+    });
+  });
+</script>
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
