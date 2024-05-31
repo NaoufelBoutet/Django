@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
 env:
-    DJANGO_SETTINGS_MODULE: Demo/settings
+    DJANGO_SETTINGS_MODULE: Demo/settings.py
 jobs:
   build:
     runs-on: ubuntu-latest
