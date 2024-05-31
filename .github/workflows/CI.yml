@@ -32,6 +32,6 @@ jobs:
 
     - name: Run tests
       run: |  
-        export DJANGO_SETTINGS_MODULE = Demo/settings
+        export DJANGO_SETTINGS_MODULE = Demo.settings
         source venv/bin/activate
         pytest
