@@ -28,7 +28,7 @@ jobs:
     - name: Set up Django
       run: |
         source venv/bin/activate
-        python manage.py migrate --noinput
+        python ../Demo/manage.py migrate --noinput
 
     - name: Run tests
       run: |
