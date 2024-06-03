@@ -113,17 +113,17 @@ def index(request):
     
     return render(request, "index.html", context={"liste_affichage": liste_affichage})
 @login_required
-def architechture(request):
+def prediction(request):
     if request.method == "POST":
         message = request.POST.get("message", "")
         if message:
-            return render(request, "architechture.html", {"message": message})
+            return render(request, "prediction.html", {"message": message})
         else:
             message_error = "Rentrez un message pour lancer la prédiction!"
-            return render(request, "architechture.html", {"message_error": message_error})
+            return render(request, "prediction.html", {"message_error": message_error})
     
     # Si la requête n'est pas de type POST, renvoyer simplement la page sans message
-    return render(request, "architechture.html")
+    return render(request, "prediction.html")
 
 
 

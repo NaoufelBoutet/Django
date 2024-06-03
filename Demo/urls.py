@@ -22,7 +22,7 @@ from authentification import views as con_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name = "index"),
-    path('architechture',views.architechture, name = "architechture"),
+    path('prediction',views.prediction, name = "prediction"),
     path('connexion',con_views.connexion, name = "connexion"),
     path('deconnexion',con_views.deconnexion, name = "deconnexion"),
     path('inscription',con_views.inscription, name = "inscription"),
