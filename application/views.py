@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required,user_passes_test
 from pymongo import MongoClient
 import re
+import os
 from authentification.models import UserProfile
 # Connexion à la base de données MongoDB
 client = MongoClient("mongodb://mongoadmin:GRETA2024@vm-kaelig-mooc.francecentral.cloudapp.azure.com")
+print("CLIENT",client)
 db = client.Mooc
 students_collection = db.message_par_user
 
