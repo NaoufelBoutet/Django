@@ -15,11 +15,11 @@ def test_index_view():
     assert 'Bienvenue chez PrédiSchool !!' in response.content.decode()
 
 @pytest.mark.django_db
-def test_architechture_view():
+def test_prediction_view():
     client = Client()
     user = User.objects.create_user(username='testuser', password='12345')
     client.force_login(user)
-    response = client.get('/architechture')
+    response = client.get('/prediction')
     assert response.status_code == 200
     assert "Vous pouvez aussi choisir de nous déposer un document pour l'analyser!!" in response.content.decode()
 
